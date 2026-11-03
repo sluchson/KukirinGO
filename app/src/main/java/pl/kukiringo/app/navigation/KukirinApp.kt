@@ -105,7 +105,7 @@ fun KukirinApp() {
                 ComingSoonScreen("Zloty", "Jeździmy razem", "Wspólne przejazdy z ekipą.", TopDestination.MEETUPS.icon)
             }
             composable(TopDestination.CLIPS.route) {
-                ComingSoonScreen("kukirinTok", "Klipy z przejazdów", "Krótkie filmiki jak na TikToku.", TopDestination.CLIPS.icon)
+                ComingSoonScreen("kukirinTok", "Klipy z przejazdów", "Krótkie filmiki z waszych przejazdów.", TopDestination.CLIPS.icon)
             }
             composable(TopDestination.PROFILE.route) {
                 ComingSoonScreen("Profil", "Twoje statystyki", "Kilometry, kukistopy i odznaki.", TopDestination.PROFILE.icon)

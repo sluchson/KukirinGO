@@ -101,7 +101,7 @@ create table public.route_ratings (
 );
 
 -- ---------------------------------------------------------------------
--- Kukistopy (jak PokéStopy) i ich zaliczanie
+-- Kukistopy (punkty na mapie do zaliczenia) i ich zaliczanie
 -- ---------------------------------------------------------------------
 create table public.kukistops (
     id          uuid primary key default gen_random_uuid(),

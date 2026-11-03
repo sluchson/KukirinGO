@@ -1,6 +1,6 @@
 # kukirinGO 🛴
 
-Aplikacja na Androida dla osób jeżdżących na hulajnogach elektrycznych — jak Pokémon GO, tylko na hulajnodze.
+Aplikacja na Androida dla osób jeżdżących na hulajnogach elektrycznych — nagrywaj przejazdy, zaliczaj kukistopy na mapie, organizuj zloty z ekipą i wrzucaj klipy do kukirinTok.
 
 **Technologie:** Kotlin + Jetpack Compose (Android Studio), backend Supabase.
 

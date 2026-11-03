@@ -12,7 +12,7 @@ data class Ride(
     val props: Int,
 )
 
-/** Punkt na mapie do „zaliczenia” — jak PokéStop w Pokémon GO (tabela `kukistops`). */
+/** Punkt na mapie do „zaliczenia” — podjeżdżasz na miejsce i zbierasz go do kolekcji (tabela `kukistops`). */
 data class Kukistop(
     val id: String,
     val name: String,
