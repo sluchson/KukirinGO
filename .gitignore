@@ -1,0 +1,26 @@
+# Gradle / Android Studio
+.gradle/
+build/
+/captures
+.externalNativeBuild
+.cxx
+*.apk
+*.aab
+
+# IntelliJ / Android Studio (ustawienia osobiste)
+.idea/
+*.iml
+
+# Lokalne ustawienia i klucze — NIE commitować
+local.properties
+.env
+*.keystore
+*.jks
+
+# Supabase CLI
+supabase/.branches
+supabase/.temp
+
+# System
+.DS_Store
+Thumbs.db

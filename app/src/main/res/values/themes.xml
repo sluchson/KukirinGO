@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Motyw okna przed załadowaniem Compose; właściwe kolory są w ui/theme/Theme.kt -->
+    <style name="Theme.KukirinGO" parent="android:Theme.Material.NoActionBar">
+        <item name="android:windowBackground">@color/kukirin_black</item>
+        <item name="android:statusBarColor">@color/kukirin_black</item>
+        <item name="android:navigationBarColor">@color/kukirin_black</item>
+    </style>
+</resources>

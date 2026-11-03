@@ -1,0 +1,8 @@
+# Jednolite końce linii niezależnie od systemu (Windows / Linux na GitHubie)
+* text=auto eol=lf
+*.bat text eol=crlf
+
+# Pliki binarne
+*.jar binary
+*.png binary
+*.ttf binary
