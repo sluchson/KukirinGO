@@ -16,37 +16,40 @@ class FakeKukirinRepository : KukirinRepository {
 
     private val _rides = MutableStateFlow(
         listOf(
-            Ride("r1", "Poranny dojazd", "Dziś · 7:42", 12.4, 41, 18.1, 34, 24),
+            Ride("r1", "Dojazd na wykład", "Dziś · 7:42", 6.2, 21, 17.7, 18, 24),
             Ride("r2", "Bulwary po zajęciach", "Wczoraj · 16:10", 8.7, 29, 17.9, 22, 11),
-            Ride("r3", "Nocny objazd rynku", "Sob · 21:05", 15.2, 52, 17.5, 41, 37),
+            Ride("r3", "Nocny objazd Rzeszowa", "Sob · 21:05", 15.2, 52, 17.5, 41, 37),
         )
     )
     override val rides: StateFlow<List<Ride>> = _rides.asStateFlow()
 
     private val _kukistops = MutableStateFlow(
         listOf(
-            Kukistop("k1", "Rynek Główny", "Serce miasta, zbiórka większości zlotów", 0.8, true),
-            Kukistop("k2", "Bulwary nad rzeką", "Najlepsza nawierzchnia w okolicy", 1.6, true),
-            Kukistop("k3", "Kampus uczelni", "Zalicz po wykładzie", 2.3, false),
-            Kukistop("k4", "Punkt widokowy", "Wymagający podjazd — bateria w górę!", 4.9, false),
+            Kukistop("k1", "Wydział EiI PRz", "Zalicz po wykładzie", 0.0, true),
+            Kukistop("k2", "Politechnika Rzeszowska", "Kampus przy al. Powstańców Warszawy", 0.9, true),
+            Kukistop("k3", "Rzeszowskie Bulwary", "Najlepsza nawierzchnia nad Wisłokiem", 1.2, true),
+            Kukistop("k4", "Zamek Lubomirskich", "Objedź zamek dookoła", 1.3, false),
+            Kukistop("k5", "Zalew Wisłok", "Długa prosta wzdłuż wody", 1.7, false),
+            Kukistop("k6", "Pomnik Czynu Rewolucyjnego", "Najbardziej rozpoznawalny punkt w mieście", 1.8, false),
+            Kukistop("k7", "Studnia na Rynku", "Serce Rzeszowa — zbiórka większości zlotów", 1.8, false),
         )
     )
     override val kukistops: StateFlow<List<Kukistop>> = _kukistops.asStateFlow()
 
     private val _meetups = MutableStateFlow(
         listOf(
-            Meetup("m1", "Nocny przejazd bulwarami", "Sobota, 19:00", "Rynek", 18.0, "spokojne tempo", 24, 40, false),
-            Meetup("m2", "Kukistopowy maraton", "Niedziela, 11:00", "Kampus", 25.0, "średnie tempo", 12, 20, true),
-            Meetup("m3", "Pierwszy zlot dla nowych", "Środa, 17:30", "Park miejski", 8.0, "na luzie", 6, 15, false),
+            Meetup("m1", "Nocny przejazd bulwarami", "Sobota, 19:00", "Studnia na Rynku", 18.0, "spokojne tempo", 24, 40, false),
+            Meetup("m2", "Kukistopowy maraton po Rzeszowie", "Niedziela, 11:00", "Wydział EiI PRz", 25.0, "średnie tempo", 12, 20, true),
+            Meetup("m3", "Pierwszy zlot dla nowych", "Środa, 17:30", "Zalew Wisłok", 8.0, "na luzie", 6, 15, false),
         )
     )
     override val meetups: StateFlow<List<Meetup>> = _meetups.asStateFlow()
 
     private val _clips = MutableStateFlow(
         listOf(
-            Clip("c1", "@kuki_ania", "Zachód słońca na bulwarach 🔥", "Bulwary", 128, 14, false),
-            Clip("c2", "@wiktor.rides", "Nowy rekord kukistopów w jeden wieczór", "Rynek", 342, 41, true),
-            Clip("c3", "@mateusz_go", "Zlot nr 1 — było nas 24!", "Park miejski", 87, 9, false),
+            Clip("c1", "@kuki_ania", "Zachód słońca na bulwarach 🔥", "Rzeszowskie Bulwary", 128, 14, false),
+            Clip("c2", "@wiktor.rides", "Nowy rekord kukistopów w jeden wieczór", "Rynek, Rzeszów", 342, 41, true),
+            Clip("c3", "@mateusz_go", "Zlot nr 1 — było nas 24!", "Zalew Wisłok", 87, 9, false),
         )
     )
     override val clips: StateFlow<List<Clip>> = _clips.asStateFlow()
@@ -56,7 +59,7 @@ class FakeKukirinRepository : KukirinRepository {
             nick = "kukirider",
             totalKm = 236.4,
             ridesCount = 31,
-            kukistopsVisited = 18,
+            kukistopsVisited = 3,
             badges = listOf(
                 Badge("Pierwsze 100 km", "Przejedź łącznie 100 km", true),
                 Badge("Nocny marek", "Przejazd po 22:00", true),
