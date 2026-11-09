@@ -32,6 +32,7 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import pl.kukiringo.app.R
 import pl.kukiringo.app.ui.screens.ComingSoonScreen
+import pl.kukiringo.app.ui.screens.map.MapScreen
 
 /** Zakładki dolnego paska nawigacji. */
 enum class TopDestination(val route: String, val label: String, val icon: ImageVector) {
@@ -95,9 +96,7 @@ fun KukirinApp() {
             startDestination = TopDestination.MAP.route,
             modifier = Modifier.padding(innerPadding),
         ) {
-            composable(TopDestination.MAP.route) {
-                ComingSoonScreen("Mapa", "Kukistopy w okolicy", "Mapa z kukistopami do zaliczenia.", TopDestination.MAP.icon)
-            }
+            composable(TopDestination.MAP.route) { MapScreen() }
             composable(TopDestination.RIDE.route) {
                 ComingSoonScreen("Jazda", "Nowy przejazd", "Nagrywanie przejazdu: dystans, czas, prędkość i bateria.", TopDestination.RIDE.icon)
             }
