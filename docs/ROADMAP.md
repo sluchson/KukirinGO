@@ -41,7 +41,7 @@ Frontend = **Maciej, Mateusz**, backend = **Wiktor, Konrad**, PM = **Anna**.
 | Mapa grupy na żywo (Supabase Realtime, `meetup_live_positions`) | Konrad + Maciej |
 | Powiadomienie przed zlotem | Wiktor |
 
-## Sprint 4 — kukirinTok
+## Sprint 4 — kukiTok
 
 | Zadanie | Kto |
 |---|---|

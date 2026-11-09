@@ -42,7 +42,7 @@ data class Meetup(
     val joined: Boolean,
 )
 
-/** Krótki filmik z przejazdu w kukirinTok (tabela `clips` + plik w Storage). */
+/** Krótki filmik z przejazdu w kukiTok (tabela `clips` + plik w Storage). */
 data class Clip(
     val id: String,
     val author: String,

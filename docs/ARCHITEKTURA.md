@@ -43,7 +43,7 @@ erDiagram
     meetups ||--o{ meetup_participants : "uczestnicy"
     meetups ||--o{ meetup_live_positions : "pozycje na żywo"
     routes |o--o{ meetups : "trasa zlotu"
-    profiles ||--o{ clips : "kukirinTok"
+    profiles ||--o{ clips : "kukiTok"
     clips ||--o{ clip_likes : ""
     clips ||--o{ clip_comments : ""
     badges ||--o{ user_badges : ""

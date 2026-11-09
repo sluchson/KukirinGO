@@ -42,7 +42,7 @@ enum class TopDestination(val route: String, val label: String, val icon: ImageV
     MAP("map", "Mapa", Icons.Filled.Map),
     RIDE("ride", "Jazda", Icons.Filled.ElectricScooter),
     MEETUPS("meetups", "Zloty", Icons.Filled.Groups),
-    CLIPS("clips", "kukirinTok", Icons.Filled.PlayCircle),
+    CLIPS("clips", "kukiTok", Icons.Filled.PlayCircle),
     PROFILE("profile", "Profil", Icons.Filled.Person),
 }
 

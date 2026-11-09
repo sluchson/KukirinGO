@@ -6,7 +6,7 @@ insert into public.badges (id, name, description) values
     ('night_owl',   'Nocny marek',     'Przejazd po 22:00'),
     ('meetups_5',   'Zlotowicz',       'Weź udział w 5 zlotach'),
     ('stops_50',    'Kolekcjoner',     'Zalicz 50 kukistopów'),
-    ('first_clip',  'Reżyser',         'Wrzuć pierwszy klip do kukirinTok')
+    ('first_clip',  'Reżyser',         'Wrzuć pierwszy klip do kukiTok')
 on conflict (id) do nothing;
 
 insert into public.kukistops (name, description, location, radius_m) values

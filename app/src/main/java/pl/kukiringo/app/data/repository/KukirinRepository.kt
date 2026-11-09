@@ -41,7 +41,7 @@ object AppContainer {
         appContext = context.applicationContext
     }
 
-    /** Folder z klipami kukirinTok w pamięci aplikacji. */
+    /** Folder z klipami kukiTok w pamięci aplikacji. */
     val clipsDir: File? get() = if (::appContext.isInitialized) File(appContext.filesDir, "clips") else null
 
     val repository: KukirinRepository by lazy { FakeKukirinRepository(clipsDir) }

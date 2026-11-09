@@ -1,7 +1,7 @@
 # kukirinGO 🛴
 
 Aplikacja na Androida dla osób jeżdżących na hulajnogach elektrycznych.
-Nagrywasz przejazdy, zaliczasz kukistopy na mapie, organizujesz zloty z ekipą i wrzucasz klipy do **kukirinTok**.
+Nagrywasz przejazdy, zaliczasz kukistopy na mapie, organizujesz zloty z ekipą i wrzucasz klipy do **kukiTok**.
 
 | | |
 |---|---|
@@ -36,7 +36,7 @@ Na razie aplikacja działa na **danych przykładowych** (`FakeKukirinRepository`
 - **Mapa** — prawdziwa mapa Rzeszowa (OpenStreetMap), 7 kukistopów jako pinezki, Twoja pozycja z GPS, odległości na żywo i przycisk **Zalicz**, gdy jesteś w promieniu punktu
 - **Jazda** — nagrywanie przejazdu z GPS: czas, dystans, prędkość i maks. prędkość na żywo, trasa rysowana na mapie, zapis przejazdu do listy i statystyk (ekran nie gaśnie podczas jazdy)
 - **Zloty** — lista zlotów, zapis/wypis z limitem miejsc
-- **kukirinTok** — nagrywanie klipu aparatem telefonu (do 60 s) albo dodanie filmu z galerii, pionowy feed z odtwarzaniem, lajki
+- **kukiTok** — nagrywanie klipu aparatem telefonu (do 60 s) albo dodanie filmu z galerii, pionowy feed z odtwarzaniem, lajki
 - **Profil** — statystyki (rosną po każdym przejeździe i zaliczonym kukistopie) i odznaki
 - Warstwa danych przez interfejs `KukirinRepository` — backend podmieni implementację bez ruszania ekranów
 - Schemat bazy Supabase z zabezpieczeniami (RLS) i kukistopami w Rzeszowie — [`supabase/`](supabase/README.md)

@@ -21,7 +21,7 @@ class KukirinApplication : Application() {
     }
 
     /**
-     * Klipy demo z `assets/demo_clips/` (jeśli są) trafiają raz do kukirinTok.
+     * Klipy demo z `assets/demo_clips/` (jeśli są) trafiają raz do kukiTok.
      * Folder jest w .gitignore — klipy żyją tylko w lokalnej wersji do pokazu.
      */
     private fun copyDemoClips() {

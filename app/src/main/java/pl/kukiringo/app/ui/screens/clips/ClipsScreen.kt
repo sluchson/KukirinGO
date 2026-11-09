@@ -65,7 +65,7 @@ import pl.kukiringo.app.ui.theme.KukirinSurfaceHigh
 import pl.kukiringo.app.ui.theme.KukirinWhite
 import java.io.File
 
-/** kukirinTok — pionowy feed krótkich klipów z przejazdów. */
+/** kukiTok — pionowy feed krótkich klipów z przejazdów. */
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun ClipsScreen() {
@@ -110,7 +110,7 @@ fun ClipsScreen() {
             )
         }
         Text(
-            text = "kukirinTok",
+            text = "kukiTok",
             style = MaterialTheme.typography.titleLarge,
             color = KukirinWhite,
             modifier = Modifier.align(Alignment.TopStart).padding(start = 16.dp, top = 14.dp),
