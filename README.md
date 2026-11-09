@@ -33,20 +33,23 @@ Na razie aplikacja działa na **danych przykładowych** (`FakeKukirinRepository`
 ## Co już jest
 
 - Motyw czarno-pomarańczowy, logo i ikona aplikacji (O jako opona 🛞), krój Exo 2
-- Dolna nawigacja z 5 ekranami:
-  - **Mapa** — podgląd mapy i lista kukistopów w okolicy
-  - **Jazda** — start/stop nagrywania (na razie dane demo), ostatnie przejazdy
-  - **Zloty** — lista zlotów, zapis/wypis z limitem miejsc
-  - **kukirinTok** — pionowy feed klipów przewijany palcem, lajki
-  - **Profil** — statystyki i odznaki
+- **Mapa** — prawdziwa mapa Rzeszowa (OpenStreetMap), 7 kukistopów jako pinezki, Twoja pozycja z GPS, odległości na żywo i przycisk **Zalicz**, gdy jesteś w promieniu punktu
+- **Jazda** — nagrywanie przejazdu z GPS: czas, dystans, prędkość i maks. prędkość na żywo, trasa rysowana na mapie, zapis przejazdu do listy i statystyk (ekran nie gaśnie podczas jazdy)
+- **Zloty** — lista zlotów, zapis/wypis z limitem miejsc
+- **kukirinTok** — nagrywanie klipu aparatem telefonu (do 60 s) albo dodanie filmu z galerii, pionowy feed z odtwarzaniem, lajki
+- **Profil** — statystyki (rosną po każdym przejeździe i zaliczonym kukistopie) i odznaki
 - Warstwa danych przez interfejs `KukirinRepository` — backend podmieni implementację bez ruszania ekranów
-- Schemat bazy Supabase z zabezpieczeniami (RLS) — [`supabase/`](supabase/README.md)
+- Schemat bazy Supabase z zabezpieczeniami (RLS) i kukistopami w Rzeszowie — [`supabase/`](supabase/README.md)
+
+> Na razie dane (poza przejazdami z GPS i klipami zapisanymi na telefonie) są przykładowe i żyją w pamięci aplikacji. Połączenie z Supabase — patrz [docs/ROADMAP.md](docs/ROADMAP.md).
 
 ## Struktura repo
 
 ```
 app/src/main/java/pl/kukiringo/app/
 ├── MainActivity.kt
+├── KukirinApplication.kt  # start aplikacji, konfiguracja mapy
+├── location/          # GPS i nagrywanie przejazdu
 ├── navigation/        # dolny pasek i nawigacja między ekranami
 ├── ui/
 │   ├── theme/         # kolory, czcionki, motyw

@@ -10,9 +10,13 @@ import pl.kukiringo.app.data.model.Kukistop
 import pl.kukiringo.app.data.model.Meetup
 import pl.kukiringo.app.data.model.Ride
 import pl.kukiringo.app.data.model.UserProfile
+import java.io.File
 
-/** Dane przykładowe, żeby frontend mógł pracować, zanim backend będzie gotowy. */
-class FakeKukirinRepository : KukirinRepository {
+/**
+ * Dane lokalne: przykłady z Rzeszowa + prawdziwe przejazdy i klipy z telefonu.
+ * [clipsDir] = folder z nagranymi/dodanymi klipami (null w testach).
+ */
+class FakeKukirinRepository(private val clipsDir: File? = null) : KukirinRepository {
 
     private val _rides = MutableStateFlow(
         listOf(
@@ -23,15 +27,16 @@ class FakeKukirinRepository : KukirinRepository {
     )
     override val rides: StateFlow<List<Ride>> = _rides.asStateFlow()
 
+    // Współrzędne z Google Maps — te same co w supabase/seed.sql.
     private val _kukistops = MutableStateFlow(
         listOf(
-            Kukistop("k1", "Wydział EiI PRz", "Zalicz po wykładzie", 0.0, true),
-            Kukistop("k2", "Politechnika Rzeszowska", "Kampus przy al. Powstańców Warszawy", 0.9, true),
-            Kukistop("k3", "Rzeszowskie Bulwary", "Najlepsza nawierzchnia nad Wisłokiem", 1.2, true),
-            Kukistop("k4", "Zamek Lubomirskich", "Objedź zamek dookoła", 1.3, false),
-            Kukistop("k5", "Zalew Wisłok", "Długa prosta wzdłuż wody", 1.7, false),
-            Kukistop("k6", "Pomnik Czynu Rewolucyjnego", "Najbardziej rozpoznawalny punkt w mieście", 1.8, false),
-            Kukistop("k7", "Studnia na Rynku", "Serce Rzeszowa — zbiórka większości zlotów", 1.8, false),
+            Kukistop("k1", "Wydział EiI PRz", "Zalicz po wykładzie", 50.0270339, 21.9851869, 120, false),
+            Kukistop("k2", "Politechnika Rzeszowska", "Kampus przy al. Powstańców Warszawy", 50.019034, 21.989195, 150, false),
+            Kukistop("k3", "Rzeszowskie Bulwary", "Najlepsza nawierzchnia nad Wisłokiem", 50.0262763, 22.0020559, 150, false),
+            Kukistop("k4", "Zamek Lubomirskich", "Objedź zamek dookoła", 50.0324847, 22.0006347, 80, false),
+            Kukistop("k5", "Zalew Wisłok", "Długa prosta wzdłuż wody", 50.0135542, 21.9951959, 300, false),
+            Kukistop("k6", "Pomnik Czynu Rewolucyjnego", "Najbardziej rozpoznawalny punkt w mieście", 50.0406072, 21.9994961, 60, false),
+            Kukistop("k7", "Studnia na Rynku", "Serce Rzeszowa — zbiórka większości zlotów", 50.0375035, 22.0049323, 60, false),
         )
     )
     override val kukistops: StateFlow<List<Kukistop>> = _kukistops.asStateFlow()
@@ -45,13 +50,20 @@ class FakeKukirinRepository : KukirinRepository {
     )
     override val meetups: StateFlow<List<Meetup>> = _meetups.asStateFlow()
 
-    private val _clips = MutableStateFlow(
-        listOf(
-            Clip("c1", "@kuki_ania", "Zachód słońca na bulwarach 🔥", "Rzeszowskie Bulwary", 128, 14, false),
-            Clip("c2", "@wiktor.rides", "Nowy rekord kukistopów w jeden wieczór", "Rynek, Rzeszów", 342, 41, true),
-            Clip("c3", "@mateusz_go", "Zlot nr 1 — było nas 24!", "Zalew Wisłok", 87, 9, false),
-        )
+    private val sampleClips = listOf(
+        Clip("c1", "@kuki_ania", "Zachód słońca na bulwarach 🔥", "Rzeszowskie Bulwary", 128, 14, false),
+        Clip("c2", "@wiktor.rides", "Nowy rekord kukistopów w jeden wieczór", "Rynek, Rzeszów", 342, 41, true),
+        Clip("c3", "@mateusz_go", "Zlot nr 1 — było nas 24!", "Zalew Wisłok", 87, 9, false),
     )
+
+    // Musi być przed _clips — używane przy wczytywaniu klipów.
+    private val demoInfo = listOf(
+        Triple("@kuki_ania", "Wieczorna przejażdżka 🛴🔥", "Rzeszowskie Bulwary"),
+        Triple("@wiktor.rides", "Kukistop zaliczony ✅", "Rynek, Rzeszów"),
+        Triple("@mateusz_go", "Ekipa w trasie — zlot nr 1", "Zalew Wisłok"),
+    )
+
+    private val _clips = MutableStateFlow(loadClips())
     override val clips: StateFlow<List<Clip>> = _clips.asStateFlow()
 
     private val _profile = MutableStateFlow(
@@ -59,7 +71,7 @@ class FakeKukirinRepository : KukirinRepository {
             nick = "kukirider",
             totalKm = 236.4,
             ridesCount = 31,
-            kukistopsVisited = 3,
+            kukistopsVisited = 0,
             badges = listOf(
                 Badge("Pierwsze 100 km", "Przejedź łącznie 100 km", true),
                 Badge("Nocny marek", "Przejazd po 22:00", true),
@@ -69,6 +81,34 @@ class FakeKukirinRepository : KukirinRepository {
         )
     )
     override val profile: StateFlow<UserProfile> = _profile.asStateFlow()
+
+    /** Klipy z telefonu (najnowsze pierwsze); gdy nie ma żadnego — przykładowe. */
+    private fun loadClips(): List<Clip> {
+        val files = clipsDir?.listFiles { f -> f.isFile && f.length() > 0 }
+            ?.sortedByDescending { it.lastModified() }
+            .orEmpty()
+        return if (files.isEmpty()) sampleClips else files.map(::clipFromFile)
+    }
+
+    private fun clipFromFile(file: File): Clip {
+        // demo_1.mp4, demo_2.mp4… — klipy do pokazu; reszta to klipy nagrane w aplikacji.
+        val demoIndex = file.nameWithoutExtension.removePrefix("demo_").toIntOrNull()
+        val demo = if (file.name.startsWith("demo_") && demoIndex != null) {
+            demoInfo[(demoIndex - 1).mod(demoInfo.size)]
+        } else {
+            null
+        }
+        return Clip(
+            id = file.name,
+            author = demo?.first ?: "@kukirider",
+            caption = demo?.second ?: "Mój przejazd 🛴",
+            location = demo?.third ?: "Rzeszów",
+            likes = if (demo != null) 87 + 41 * (demoIndex ?: 0) else 0,
+            comments = if (demo != null) 3 + 4 * (demoIndex ?: 0) else 0,
+            likedByMe = false,
+            videoPath = file.absolutePath,
+        )
+    }
 
     override fun toggleJoinMeetup(meetupId: String) {
         _meetups.update { list ->
@@ -93,5 +133,23 @@ class FakeKukirinRepository : KukirinRepository {
                 else c.copy(likedByMe = !c.likedByMe, likes = c.likes + if (c.likedByMe) -1 else 1)
             }
         }
+    }
+
+    override fun addRide(ride: Ride) {
+        _rides.update { listOf(ride) + it }
+        _profile.update { it.copy(totalKm = it.totalKm + ride.distanceKm, ridesCount = it.ridesCount + 1) }
+    }
+
+    override fun addClip(videoFile: File) {
+        _clips.update { current ->
+            listOf(clipFromFile(videoFile)) + current.filter { it.videoPath != null }
+        }
+    }
+
+    override fun visitKukistop(kukistopId: String) {
+        val stop = _kukistops.value.firstOrNull { it.id == kukistopId } ?: return
+        if (stop.visited) return
+        _kukistops.update { list -> list.map { if (it.id == kukistopId) it.copy(visited = true) else it } }
+        _profile.update { it.copy(kukistopsVisited = it.kukistopsVisited + 1) }
     }
 }

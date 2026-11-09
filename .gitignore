@@ -12,6 +12,9 @@ build/
 .idea/
 *.iml
 
+# Klipy demo (cudze filmy) — tylko lokalnie do pokazu, NIE do publicznego repo
+app/src/main/assets/demo_clips/
+
 # Lokalne ustawienia i klucze — NIE commitować
 local.properties
 .env

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Pinezka kukistopu (kolor nadawany w kodzie: pomarańczowy / szary po zaliczeniu) -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="36dp"
+    android:height="44dp"
+    android:viewportWidth="36"
+    android:viewportHeight="44">
+    <path
+        android:fillColor="#FFFF6A13"
+        android:strokeColor="#FF0E0E10"
+        android:strokeWidth="2"
+        android:pathData="M18,2C9.7,2 3,8.7 3,17C3,28 18,42 18,42C18,42 33,28 33,17C33,8.7 26.3,2 18,2Z" />
+    <path
+        android:fillColor="#FF0E0E10"
+        android:pathData="M18,10A7,7 0,1 1,17.99 10Z" />
+</vector>

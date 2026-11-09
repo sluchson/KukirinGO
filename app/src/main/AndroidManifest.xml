@@ -2,11 +2,14 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <!-- GPS do zapisu przejazdów (prośba o zgodę dojdzie razem z prawdziwym śledzeniem). -->
+    <!-- Mapa OpenStreetMap: sprawdzanie połączenia przed pobraniem kafelków. -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <!-- GPS: pozycja na mapie, zaliczanie kukistopów i nagrywanie przejazdów. -->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
+        android:name=".KukirinApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:roundIcon="@mipmap/ic_launcher_round"

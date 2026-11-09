@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Pozycja użytkownika na mapie -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="26dp"
+    android:height="26dp"
+    android:viewportWidth="26"
+    android:viewportHeight="26">
+    <path
+        android:fillColor="#552F80ED"
+        android:pathData="M13,0A13,13 0,1 1,12.99 0Z" />
+    <path
+        android:fillColor="#FFFFFFFF"
+        android:pathData="M13,5A8,8 0,1 1,12.99 5Z" />
+    <path
+        android:fillColor="#FF2F80ED"
+        android:pathData="M13,7.5A5.5,5.5 0,1 1,12.99 7.5Z" />
+</vector>

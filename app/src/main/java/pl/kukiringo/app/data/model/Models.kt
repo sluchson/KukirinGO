@@ -1,5 +1,8 @@
 package pl.kukiringo.app.data.model
 
+/** Punkt trasy z GPS. */
+data class TrackPoint(val lat: Double, val lng: Double)
+
 /** Zapisany przejazd (docelowo tabela `rides` w Supabase). */
 data class Ride(
     val id: String,
@@ -8,8 +11,10 @@ data class Ride(
     val distanceKm: Double,
     val durationMin: Int,
     val avgSpeedKmh: Double,
-    val batteryUsedPct: Int,
+    /** Zużycie baterii hulajnogi — null, gdy nieznane (np. przejazd nagrany z GPS). */
+    val batteryUsedPct: Int?,
     val props: Int,
+    val path: List<TrackPoint> = emptyList(),
 )
 
 /** Punkt na mapie do „zaliczenia” — podjeżdżasz na miejsce i zbierasz go do kolekcji (tabela `kukistops`). */
@@ -17,7 +22,10 @@ data class Kukistop(
     val id: String,
     val name: String,
     val description: String,
-    val distanceKm: Double,
+    val lat: Double,
+    val lng: Double,
+    /** Promień w metrach, w którym można zaliczyć punkt. */
+    val radiusM: Int,
     val visited: Boolean,
 )
 
@@ -43,6 +51,8 @@ data class Clip(
     val likes: Int,
     val comments: Int,
     val likedByMe: Boolean,
+    /** Ścieżka do pliku wideo na telefonie; null = klip przykładowy bez filmu. */
+    val videoPath: String? = null,
 )
 
 data class Badge(
