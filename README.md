@@ -1,7 +1,14 @@
 # kukirinGO 🛴
 
-Aplikacja na Androida dla osób jeżdżących na hulajnogach elektrycznych.
-Nagrywasz przejazdy, zaliczasz kukistopy na mapie, organizujesz zloty z ekipą i wrzucasz klipy do **kukiTok**.
+### 📲 [Pobierz aplikację (APK na Androida)](https://github.com/sluchson/KukirinGO/releases/latest/download/kukirinGO.apk)
+
+**Miasto to plansza, hulajnoga to Twój pionek.** kukirinGO zamienia codzienne przejazdy hulajnogą elektryczną w grę miejską: zaliczasz **kukistopy** w ciekawych miejscach Rzeszowa, nagrywasz trasy z GPS, umawiasz się z ekipą na **zloty** i wrzucasz klipy z jazdy do **kukiTok**.
+
+**Problem:** coraz więcej osób jeździ hulajnogami elektrycznymi, ale nie ma aplikacji stworzonej dla nich — aplikacje sportowe skupiają się na bieganiu i rowerze, trasy wybiera się na czuja, a wspólne przejazdy umawia się w przypadkowych grupach na komunikatorach.
+
+**Rozwiązanie:** jedna aplikacja, która mierzy jazdę, nagradza za odkrywanie miasta (a nie za prędkość — rankingi liczą kilometry) i łączy ludzi w lokalną społeczność.
+
+**Status: działające MVP na Androida** — wszystkie 5 ekranów działa na prawdziwym telefonie: mapa Rzeszowa z kukistopami i zaliczaniem na miejscu (GPS), nagrywanie przejazdu z trasą na mapie, zloty, kukiTok z nagrywaniem klipów i profil ze statystykami.
 
 | | |
 |---|---|

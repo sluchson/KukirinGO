@@ -3,7 +3,11 @@ name: Android CI
 on:
   push:
     branches: [main]
+    tags: ["v*"]
   pull_request:
+
+permissions:
+  contents: write
 
 jobs:
   build:
@@ -21,8 +25,23 @@ jobs:
       - name: Budowanie i testy
         run: ./gradlew assembleDebug testDebugUnitTest --stacktrace
 
-      - name: APK do pobrania
+      - name: Plik APK z czytelną nazwą
+        run: cp app/build/outputs/apk/debug/app-debug.apk kukirinGO.apk
+
+      - name: APK do pobrania (artefakt)
         uses: actions/upload-artifact@v4
         with:
-          name: kukirinGO-debug-apk
-          path: app/build/outputs/apk/debug/*.apk
+          name: kukirinGO-apk
+          path: kukirinGO.apk
+
+      - name: Wydanie na GitHubie (przy tagu v*)
+        if: startsWith(github.ref, 'refs/tags/v')
+        uses: softprops/action-gh-release@v2
+        with:
+          name: kukirinGO ${{ github.ref_name }}
+          body: |
+            📲 **Pobierz `kukirinGO.apk` poniżej i zainstaluj na telefonie z Androidem 8.0+.**
+            Przy instalacji zezwól na „instalowanie z nieznanych źródeł”.
+
+            Co działa: mapa Rzeszowa z kukistopami i zaliczaniem na miejscu, jazda z GPS (dystans, prędkość, trasa na mapie), zloty z zapisem, kukiTok (nagrywanie klipów i dodawanie z galerii), profil ze statystykami.
+          files: kukirinGO.apk
