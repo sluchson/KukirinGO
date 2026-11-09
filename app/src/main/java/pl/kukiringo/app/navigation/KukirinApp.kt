@@ -31,8 +31,10 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import pl.kukiringo.app.R
-import pl.kukiringo.app.ui.screens.ComingSoonScreen
+import pl.kukiringo.app.ui.screens.clips.ClipsScreen
 import pl.kukiringo.app.ui.screens.map.MapScreen
+import pl.kukiringo.app.ui.screens.meetups.MeetupsScreen
+import pl.kukiringo.app.ui.screens.profile.ProfileScreen
 import pl.kukiringo.app.ui.screens.ride.RideScreen
 
 /** Zakładki dolnego paska nawigacji. */
@@ -99,15 +101,9 @@ fun KukirinApp() {
         ) {
             composable(TopDestination.MAP.route) { MapScreen() }
             composable(TopDestination.RIDE.route) { RideScreen() }
-            composable(TopDestination.MEETUPS.route) {
-                ComingSoonScreen("Zloty", "Jeździmy razem", "Wspólne przejazdy z ekipą.", TopDestination.MEETUPS.icon)
-            }
-            composable(TopDestination.CLIPS.route) {
-                ComingSoonScreen("kukirinTok", "Klipy z przejazdów", "Krótkie filmiki z waszych przejazdów.", TopDestination.CLIPS.icon)
-            }
-            composable(TopDestination.PROFILE.route) {
-                ComingSoonScreen("Profil", "Twoje statystyki", "Kilometry, kukistopy i odznaki.", TopDestination.PROFILE.icon)
-            }
+            composable(TopDestination.MEETUPS.route) { MeetupsScreen() }
+            composable(TopDestination.CLIPS.route) { ClipsScreen() }
+            composable(TopDestination.PROFILE.route) { ProfileScreen() }
         }
     }
 }
